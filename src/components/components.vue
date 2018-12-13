@@ -73,7 +73,6 @@
                     <th scope="col">Properties</th>
                     <th></th>
                     <th></th>
-                    <th></th>
                     </tr>
                 </thead>
                 
@@ -83,7 +82,6 @@
                                 <td @click="editComponent(component); showComponent();" scope="col"><ul class="list-group"><li class="list-group-item item" v-for="property in component.properties" v-bind:key="property.id"><b>{{property.type}}</b>{{" " + property.name}}</li></ul></td>
 
                                 <td  scope="col"><button @click="editComponent(component); show();" class="btn btn-warning">Edit</button></td>
-                                <td  scope="col"><button @click="editComponent(component); generateComponent(component);" class="btn btn-success">Generate</button></td>
                                 <td  scope="col"><button @click="deleteComponent(component.id)" class="btn btn-danger">Delete</button></td>
                                 </tr>
                         </tbody>
@@ -176,7 +174,6 @@ export default {
                 type:'',
                       },
             edit: false,
-            generated:false,
         }
     
 
@@ -270,14 +267,14 @@ export default {
         },
 
 
-        generateComponent(component) {
-                    axios({method: 'POST',
-                url: 'http://localhost:8080/api/components/'+this.component.id+'/'+this.component.name, 
-                data: JSON.stringify(this.component), 
-                headers:{'Content-Type': 'application/json; charset=utf-8'}}).then((response) => {
-                this.generated = response.data}).then(data => {
-                            this.component=this.emptyComponent; })
-        }
+        // generateComponent(component) {
+        //             axios({method: 'POST',
+        //         url: 'http://localhost:8080/api/components/'+this.component.id+'/'+this.component.name, 
+        //         data: JSON.stringify(this.component), 
+        //         headers:{'Content-Type': 'application/json; charset=utf-8'}}).then((response) => {
+        //         this.generated = response.data}).then(data => {
+        //                     this.component=this.emptyComponent; })
+        // }
     }
 
 }

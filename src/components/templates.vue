@@ -41,7 +41,7 @@
         <label for="name">Name</label>
         <input type="text" class='form-control' v-model="template.name" id="tempName">   
          <label for="name">Text</label>
-        <textarea type="text" class='form-control' v-model="template.text" id="tempText"></textarea>  
+        <textarea rows="15" cols="50" type="text" class='form-control' v-model="template.text" id="tempText"></textarea>  
     </div>
 
         <button type="submit" v-on:click="hide()" name="Save" class="btn btn-primary save">Save</button>
