@@ -56,7 +56,7 @@
                    <td>Name</td>   <td>{{this.template.name}}</td>
                </tr>
                <tr>
-                   <td>Text</td>   <td>{{this.template.text}}</td>
+                   <td>Text</td>   <td><pre>{{this.template.text}}</pre></td>
                </tr>
 
            </tbody>
@@ -74,9 +74,9 @@
                 
                         <tbody v-for="template in templates" v-bind:key="template.id">
                                 <tr class="click">
-                                <td @click="editTemplate(template); showTemplate();" scope="col">{{template.name}}</td>
-                                <td @click="editTemplate(template); showTemplate();" scope="col">{{template.text}}</td>
-
+                                <td @click="editTemplate(template); showTemplate();" scope="col"><b>{{template.name}}</b></td>
+                                <td v-if="template.text.length>35" class="text" @click="editTemplate(template); showTemplate();" scope="col">{{template.text.substring(0,34)+"..."}}</td>
+                                <td v-else class="text" @click="editTemplate(template); showTemplate();" scope="col">{{template.text}}</td>
                                 <td  scope="col"><button @click="editTemplate(template); show();" class="btn btn-warning">Edit</button></td>
                                 <td  scope="col"><button @click="deleteTemplate(template.id)" class="btn btn-danger">Delete</button></td>
                                 </tr>
@@ -129,6 +129,7 @@ export default {
     name: 'templates',
     components: {
   },
+
     data () {
         return {
             templates:[],
@@ -150,11 +151,11 @@ export default {
 
     },
     
-    
 
     created() {
         this.fetchTemplates();
     },
+
     methods: {
         addTag (newTag) {
       const tag = {
@@ -223,6 +224,8 @@ export default {
                 axios.delete('http://localhost:8080/api/Templates/'+id, { data: {id: 'id'}}).then( data => {this.fetchTemplates()} )
             }
         }
+
+        
     }
 }
 </script>
