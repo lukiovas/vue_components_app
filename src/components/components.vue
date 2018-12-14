@@ -5,9 +5,9 @@
          <nav class="navbar navbar-expand-sm navbar-light bg-info mb-3">
         <div class="container">
             <div class="float-left">
-                <ul class="nav nav-pills">
+                <ul class="nav nav-pills" id="nav-list">
                     <li class="nav-item">
-                        <a href="http://localhost:8081/components/#/components" class="btn btn-light">Components</a>
+                        <a href="http://localhost:8081/components/#/components" class="btn btn-light active">Components</a>
                     </li>
                     <li class="nav-item">
                         <a href="http://localhost:8081/components/#/properties" class="btn btn-light">Properties</a>
@@ -80,7 +80,6 @@
                                 <tr class="click">
                                 <td @click="editComponent(component); showComponent();" scope="col">{{component.name}}</td>
                                 <td @click="editComponent(component); showComponent();" scope="col"><ul class="list-group"><li class="list-group-item item" v-for="property in component.properties" v-bind:key="property.id"><b>{{property.type}}</b>{{" " + property.name}}</li></ul></td>
-
                                 <td  scope="col"><button @click="editComponent(component); show();" class="btn btn-warning">Edit</button></td>
                                 <td  scope="col"><button @click="deleteComponent(component.id)" class="btn btn-danger">Delete</button></td>
                                 </tr>
@@ -122,6 +121,9 @@ li.list-group-item.item {
     background-color: rgba(65, 221, 34, 0.3);
         margin-right: 50px;
 }
+.btn-light:hover, .btn-light:active { 
+  background-color: yellow;
+}
 
 
 
@@ -140,24 +142,15 @@ export default {
         return {
             components: [],
             properties:[],
+
             component: {
                 id:'',
                 name:'',
-                property: {
-                     id:'',
-                    name:'',
-                    type:'',
-                },
                     properties : [],
             },
             emptyComponent: {
                 id:'',
                 name:'',
-                property: {
-                     id:'',
-                    name:'',
-                    type:'',
-                },
                     properties : [],
             
             },
@@ -278,5 +271,6 @@ export default {
     }
 
 }
+
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

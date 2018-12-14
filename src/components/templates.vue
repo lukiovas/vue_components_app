@@ -16,7 +16,7 @@
                         <a href="http://localhost:8081/components/#/Modules" class="btn btn-light">Modules</a>
                     </li>
                     <li class="nav-item">
-                        <a href="http://localhost:8081/components/#/Templates" class="btn btn-light">Templates</a>
+                        <a href="http://localhost:8081/components/#/Templates" class="btn btn-light active">Templates</a>
                     </li>
                  </ul>
             

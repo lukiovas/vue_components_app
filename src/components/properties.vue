@@ -10,7 +10,7 @@
                         <a href="http://localhost:8081/components/#/components" class="btn btn-light">Components</a>
                     </li>
                     <li class="nav-item">
-                        <a href="http://localhost:8081/components/#/properties" class="btn btn-light">Properties</a>
+                        <a href="http://localhost:8081/components/#/properties" class="btn btn-light active">Properties</a>
                     </li>
                     <li class="nav-item">
                         <a href="http://localhost:8081/components/#/modules" class="btn btn-light">Modules</a>

@@ -13,7 +13,7 @@
                         <a href="http://localhost:8081/components/#/properties" class="btn btn-light">Properties</a>
                     </li>
                     <li class="nav-item">
-                        <a href="http://localhost:8081/components/#/Modules" class="btn btn-light">Modules</a>
+                        <a href="http://localhost:8081/components/#/Modules" class="btn btn-light active">Modules</a>
                     </li>
                     <li class="nav-item">
                         <a href="http://localhost:8081/components/#/Templates" class="btn btn-light">Templates</a>
@@ -40,6 +40,9 @@
         <div class="line">
         <label for="name">Name</label>
         <input type="text" class='form-control' v-model="module.name" id="modName">
+        <label for="components" class="typo__label">Components</label>
+  <multiselect v-model="module.component" tag-placeholder="Add this as new component" id="modules" placeholder="Search or add a component" label="name" :allow-empty="true" track-by="id" :options="this.components" :max-height="150" :taggable="true" @tag="addTag"></multiselect>
+  <pre class="language-json"><code></code></pre>   
         <label for="templates" class="typo__label">Templates</label>
   <multiselect v-model="module.templates" tag-placeholder="Add this as new template" id="modules" placeholder="Search or add a template" label="name" :allow-empty="true" track-by="id" :options="this.templates" :max-height="150" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
   <pre class="language-json"><code></code></pre>    
@@ -57,7 +60,10 @@
                    <td>Name</td>   <td>{{this.module.name}}</td>
                </tr>
                <tr>
-                   <td>Templates</td>   <td>{{this.module.templates}}</td>
+                   <td>Component</td>   <td>{{this.module.component.name}}</td>
+               </tr>
+               <tr>
+                   <td>Templates</td>   <td><ul class="list-group"><li class="list-group-item item" v-for="template in this.module.templates" v-bind:key="template.id">{{template.name}}</li></ul></td>
                </tr>
 
            </tbody>
@@ -67,6 +73,7 @@
                 <thead>
                     <tr>
                     <th scope="col">Name</th>
+                    <th scope="col">Component</th>
                     <th scope="col">Templates</th>
                     <th></th>
                     <th></th>
@@ -76,6 +83,7 @@
                         <tbody v-for="module in modules" v-bind:key="module.id">
                                 <tr class="click">
                                 <td @click="editModule(module); showModule();" scope="col">{{module.name}}</td>
+                                <td @click="editModule(module); showModule();" scope="col"><b>{{module.component.name}}</b></td>
                                 <td @click="editModule(module); showModule();" scope="col"><ul class="list-group"><li class="list-group-item item" v-for="template in module.templates" v-bind:key="template.id"><b>{{template.name}}</b></li></ul></td>
 
                                 <td  scope="col"><button @click="editModule(module); show();" class="btn btn-warning">Edit</button></td>
@@ -126,6 +134,7 @@ li.nav-item {
 <script>
 import axios from 'axios'
 import Multiselect from 'vue-multiselect'
+import components from '@/components/components.vue';
 
 export default {
     name: 'modules',
@@ -135,6 +144,7 @@ export default {
     data () {
         return {
             modules:[],
+            components:[],
             templates:[],
             selected: [],
             module_id:'',
@@ -142,11 +152,31 @@ export default {
                 id:'',
                 name:'',
                 templates: [],
+                component: {
+                    id:'',
+                    name:'',
+                    property: {
+                        id:'',
+                        name:'',
+                        type:'',
+                    },
+                    properties : [],
+                },
                 },
                       emptyModule: { 
                 id:'',
                 name:'',
                 templates: [],
+                component: {
+                    id:'',
+                    name:'',
+                    property: {
+                        id:'',
+                        name:'',
+                        type:'',
+                        },
+                    properties : [],
+                 },
                       },
                       template: { 
                 id:'',
@@ -165,6 +195,7 @@ export default {
     
 
     created() {
+        this.fetchComponents();
         this.fetchModules();
         this.fetchTemplates();
     },
@@ -182,6 +213,12 @@ export default {
         fetchModules() {
                         axios.get('http://localhost:8080/api/Modules').then((response) => {
                 this.modules = response.data;
+            })
+
+        },
+        fetchComponents() {
+                        axios.get('http://localhost:8080/api/components').then((response) => {
+                this.components = response.data;
             })
 
         },
@@ -209,6 +246,7 @@ export default {
         addNew() {  
             this.module.id="";
             this.module.name="";
+            this.module.component="";
             this.module.templates=[];
             this.edit=false;
             this.hide();
@@ -236,6 +274,7 @@ export default {
             this.edit=true;
             this.module.id=module.id;
             this.module.name=module.name;
+            this.module.component=module.component;
             this.module.templates=module.templates;
         },
         deleteModule(id) {
