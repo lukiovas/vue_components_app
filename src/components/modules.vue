@@ -77,6 +77,7 @@
                     <th scope="col">Templates</th>
                     <th></th>
                     <th></th>
+                    <th></th>
                     </tr>
                 </thead>
                 
@@ -86,6 +87,7 @@
                                 <td @click="editModule(module); showModule();" scope="col"><b>{{module.component.name}}</b></td>
                                 <td @click="editModule(module); showModule();" scope="col"><ul class="list-group"><li class="list-group-item item" v-for="template in module.templates" v-bind:key="template.id"><b>{{template.name}}</b></li></ul></td>
 
+                                <td  scope="col"><button @click="editModule(module); generateModule(module)" class="btn btn-success">Generate</button></td>
                                 <td  scope="col"><button @click="editModule(module); show();" class="btn btn-warning">Edit</button></td>
                                 <td  scope="col"><button @click="deleteModule(module.id)" class="btn btn-danger">Delete</button></td>
                                 </tr>
@@ -281,7 +283,13 @@ export default {
             if(confirm('Are you sure?')) {
                 axios.delete('http://localhost:8080/api/Modules/'+id, { data: {id: 'id'}}).then( data => {this.fetchModules()} )
             }
+        },
+        generateModule(module) {
+            axios.post('http://localhost:8080/api/Modules/'+module.id, this.module)
+            .then( data => {this.fetchModules()} )
         }
+    
+        
     }
 }
 </script>
