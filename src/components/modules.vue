@@ -18,6 +18,9 @@
                     <li class="nav-item">
                         <a href="http://localhost:8081/components/#/Templates" class="btn btn-light">Templates</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="http://localhost:8081/components/#/projects" class="btn btn-light ">Projects</a>
+                    </li>
                  </ul>
             
             
@@ -38,13 +41,13 @@
   <modal name="create-module" :adaptive="true" height="auto" width="800" :scrollable="true">
       <form class="mb-3 forma" id="forma" @submit.prevent="createModule" action="http://localhost:8081/modules" method="post">
         <div class="line">
-        <label for="name">Name</label>
+        <label for="name">Module Name</label>
         <input type="text" class='form-control' v-model="module.name" id="modName">
         <label for="components" class="typo__label">Components</label>
-  <multiselect v-model="module.component" tag-placeholder="Add this as new component" id="modules" placeholder="Search or add a component" label="name" :allow-empty="true" track-by="id" :options="this.components" :max-height="150" :taggable="true" @tag="addTag"></multiselect>
+  <multiselect v-model="module.component" tag-placeholder="Add this as new component" id="modules" placeholder="Search or add a component" label="name" :allow-empty="true" track-by="id" :options="this.components" :max-height="150" :taggable="true" ></multiselect>
   <pre class="language-json"><code></code></pre>   
         <label for="templates" class="typo__label">Templates</label>
-  <multiselect v-model="module.templates" tag-placeholder="Add this as new template" id="modules" placeholder="Search or add a template" label="name" :allow-empty="true" track-by="id" :options="this.templates" :max-height="150" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
+  <multiselect v-model="module.templates" tag-placeholder="Add this as new template" id="modules" placeholder="Search or add a template" label="name" :allow-empty="true" track-by="id" :options="this.templates" :max-height="150" :multiple="true" :taggable="true" ></multiselect>
   <pre class="language-json"><code></code></pre>    
     </div>
 
@@ -57,10 +60,10 @@
        <table class="table module-table">
            <tbody>
                <tr>
-                   <td>Name</td>   <td>{{this.module.name}}</td>
+                   <td>Module Name</td>   <td>{{this.module.name}}</td>
                </tr>
                <tr>
-                   <td>Component</td>   <td>{{this.module.component.name}}</td>
+                   <td>Component</td>   <td v-if="this.module.component!==null">{{this.module.component.name}}</td>
                </tr>
                <tr>
                    <td>Templates</td>   <td><ul class="list-group"><li class="list-group-item item" v-for="template in this.module.templates" v-bind:key="template.id">{{template.name}}</li></ul></td>
@@ -72,7 +75,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                    <th scope="col">Name</th>
+                    <th scope="col">Module Name</th>
                     <th scope="col">Component</th>
                     <th scope="col">Templates</th>
                     <th></th>
@@ -84,7 +87,7 @@
                         <tbody v-for="module in modules" v-bind:key="module.id">
                                 <tr class="click">
                                 <td @click="editModule(module); showModule();" scope="col">{{module.name}}</td>
-                                <td @click="editModule(module); showModule();" scope="col"><b>{{module.component.name}}</b></td>
+                                <td @click="editModule(module); showModule();" scope="col"><b v-if="module.component!==null">{{module.component.name}}</b></td>
                                 <td @click="editModule(module); showModule();" scope="col"><ul class="list-group"><li class="list-group-item item" v-for="template in module.templates" v-bind:key="template.id"><b>{{template.name}}</b></li></ul></td>
 
                                 <td  scope="col"><button @click="editModule(module); generateModule(module)" class="btn btn-success">Generate</button></td>
@@ -225,7 +228,7 @@ export default {
 
         },
         fetchTemplates() {
-            axios.get('http://localhost:8080/api/Templates').then((response) => {
+                        axios.get('http://localhost:8080/api/Templates').then((response) => {
                 this.templates = response.data;
             })
 
@@ -248,7 +251,7 @@ export default {
         addNew() {  
             this.module.id="";
             this.module.name="";
-            this.module.component="";
+            this.module.component=null;
             this.module.templates=[];
             this.edit=false;
             this.hide();
@@ -276,7 +279,11 @@ export default {
             this.edit=true;
             this.module.id=module.id;
             this.module.name=module.name;
+        if(module.component!==null) {
             this.module.component=module.component;
+        } else {
+            this.module.component=null;
+        }
             this.module.templates=module.templates;
         },
         deleteModule(id) {

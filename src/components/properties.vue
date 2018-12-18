@@ -18,6 +18,9 @@
                     <li class="nav-item">
                         <a href="http://localhost:8081/components/#/Templates" class="btn btn-light">Templates</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="http://localhost:8081/components/#/projects" class="btn btn-light ">Projects</a>
+                    </li>
                  </ul>
             
             
@@ -38,7 +41,7 @@
   <modal name="create-property" :adaptive="true" height="auto" width="800" :scrollable="true">
       <form class="mb-3 forma" id="forma" @submit.prevent="createProperty" action="http://localhost:8081/properties" method="post">
         <div class="line">
-        <label for="name">Name</label>
+        <label for="name">Property Name</label>
         <input type="text" class='form-control' v-model="property.name" id="propName">
         <label for="type">Type</label>
         <input type="text" class='form-control' v-model="property.type" id="propType">
@@ -55,7 +58,7 @@
        <table class="table property-table">
            <tbody>
                <tr>
-                   <td>Name</td>   <td>{{this.property.name}}</td>
+                   <td>Property Name</td>   <td>{{this.property.name}}</td>
                </tr>
                <tr>
                    <td>Type</td>   <td>{{this.property.type}}</td>
@@ -67,7 +70,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                    <th scope="col">Name</th>
+                    <th scope="col">Property Name</th>
                     <th scope="col">Type</th>
                     <th></th>
                     <th></th>

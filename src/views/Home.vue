@@ -10,6 +10,8 @@ import components from '@/components/components.vue';
 import properties from '@/components/properties.vue';
 import templates from '@/components/templates.vue';
 import modules from '@/components/modules.vue';
+import projects from '@/components/projects.vue';
+
 
 @Component({
   components: {

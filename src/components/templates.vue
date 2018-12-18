@@ -18,6 +18,9 @@
                     <li class="nav-item">
                         <a href="http://localhost:8081/components/#/Templates" class="btn btn-light active">Templates</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="http://localhost:8081/components/#/projects" class="btn btn-light ">Projects</a>
+                    </li>
                  </ul>
             
             
@@ -38,7 +41,7 @@
   <modal name="create-template" :adaptive="true" height="auto" width="800" :scrollable="true">
       <form class="mb-3 forma" id="forma" @submit.prevent="createTemplate" action="http://localhost:8081/templates" method="post">
         <div class="line">
-        <label for="name">Name</label>
+        <label for="name">Template Name</label>
         <input type="text" class='form-control' v-model="template.name" id="tempName">   
          <label for="name">Text</label>
         <textarea rows="15" cols="50" type="text" class='form-control' v-model="template.text" id="tempText"></textarea>  
@@ -53,7 +56,7 @@
        <table class="table template-table">
            <tbody>
                <tr>
-                   <td>Name</td>   <td>{{this.template.name}}</td>
+                   <td>Template Name</td>   <td>{{this.template.name}}</td>
                </tr>
                <tr>
                    <td>Text</td>   <td><pre>{{this.template.text}}</pre></td>
@@ -65,7 +68,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                    <th scope="col">Name</th>
+                    <th scope="col">Template Name</th>
                     <th scope="col">Text</th>
                     <th></th>
                     <th></th>

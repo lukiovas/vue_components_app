@@ -18,6 +18,9 @@
                     <li class="nav-item">
                         <a href="http://localhost:8081/components/#/Templates" class="btn btn-light">Templates</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="http://localhost:8081/components/#/projects" class="btn btn-light ">Projects</a>
+                    </li>
                  </ul>
             
             
@@ -35,10 +38,10 @@
 
         <button type="button" v-on:click=" addNew()" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">
   Add new</button>
-  <modal name="create-component" :adaptive="true" height="450" width="800" :scrollable="true" >
+  <modal name="create-component" :adaptive="true" height="auto" width="800" :scrollable="true" >
       <form class="mb-3 forma" id="forma" @submit.prevent="createComponent" action="http://localhost:8081/components" method="post">
         <div class="line">
-        <label for="name">Name</label>
+        <label for="name">Component Name</label>
         <input type="text" class='form-control' v-model="component.name" id="compName">
         </div >
         <div class="line">
@@ -54,11 +57,11 @@
         </form> 
        </modal>
 
-       <modal name="show-component" :adaptive="true" height="400" width="800" :scrollable="true">
+       <modal name="show-component" :adaptive="true" height="auto" width="800" :scrollable="true">
        <table class="table component-table">
            <tbody>
                <tr>
-                   <td>Name</td>   <td>{{this.component.name}}</td>
+                   <td>Component Name</td>   <td>{{this.component.name}}</td>
                </tr>
                  <tr>
                      <td>Properties </td>   <td ><ul class="list-group"><li class="list-group-item item" v-for="property in this.component.properties" v-bind:key="property.id"><b>{{property.type}}</b>{{" " + property.name}}</li></ul></td>
@@ -69,7 +72,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                    <th scope="col">Name</th>
+                    <th scope="col">Component Name</th>
                     <th scope="col">Properties</th>
                     <th></th>
                     <th></th>

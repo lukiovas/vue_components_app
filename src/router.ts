@@ -7,6 +7,7 @@ import components from "./components/components.vue"
 import properties from "./components/properties.vue"
 import modules from "./components/modules.vue"
 import templates from "./components/templates.vue"
+import projects from "./components/projects.vue"
 
  
 Vue.use(VueAxios, axios);
@@ -39,6 +40,11 @@ export default new Router({
       path: '/Templates',
       name: 'templates',
       component: templates,
+    },
+    {
+      path: '/projects',
+      name: 'projects',
+      component: projects,
     }
     // {
       // path: '/about',
