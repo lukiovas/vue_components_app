@@ -38,13 +38,13 @@
 
         <button type="button" v-on:click=" addNew()" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">
   Add new</button>
-  <modal name="create-project" :adaptive="true" height="auto" width="800" :scrollable="true">
+  <modal name="create-project" :adaptive="true" height="800" width="800" :scrollable="true">
       <form class="mb-3 forma" id="forma" @submit.prevent="createProject" action="http://localhost:8081/projects" method="post">
         <div class="line">
         <label for="name">Project Name</label>
         <input type="text" class='form-control' v-model="project.name" id="PrjctName">
         <label for="modules" class="typo__label">Modules</label>
-  <multiselect v-model="project.modules" tag-placeholder="Add this as new module" id="modules" placeholder="Search or add a module" label="name" :allow-empty="true" track-by="id" :options="this.modules" :max-height="150" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
+  <multiselect v-model="project.modules" tag-placeholder="Add this as new module" id="modules" placeholder="Search or add a module" label="name" :allow-empty="true" track-by="id" :options="this.modules" :max-height="500" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
   <pre class="language-json"><code></code></pre>    
     </div>
 
@@ -82,7 +82,7 @@
                                 <td @click="editProject(project); showProject();" scope="col">{{project.name}}</td>
                                 <td @click="editProject(project); showProject();" scope="col"><ul v-if="project.modules!==[]" class="list-group"><li class="list-group-item item" v-for="module in project.modules" v-bind:key="module.id"><b>{{module.name}}</b></li></ul></td>
 
-                                <td  scope="col"><button @click="editProject(project);" class="btn btn-success">Generate</button></td>
+                                <td  scope="col"><button @click="editProject(project); generateProject(project)" class="btn btn-success">Generate</button></td>
                                 <td  scope="col"><button @click="editProject(project); show();" class="btn btn-warning">Edit</button></td>
                                 <td  scope="col"><button @click="deleteProject(project.id)" class="btn btn-danger">Delete</button></td>
                                 </tr>
@@ -257,10 +257,10 @@ export default {
                 axios.delete('http://localhost:8080/api/projects/'+id, { data: {id: 'id'}}).then( data => {this.fetchProjects()} )
             }
         },
-        // generateProject(project) {
-        //     axios.post('http://localhost:8080/api/projects/'+project.id, this.project)
-        //     .then( data => {this.fetchProjects()} )
-        // }
+        generateProject(project) {
+            axios.post('http://localhost:8080/api/projects/'+project.id, this.project)
+            .then( data => {this.fetchProjects()} )
+        }
     
         
     }

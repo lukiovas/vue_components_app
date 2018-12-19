@@ -47,7 +47,7 @@
   <multiselect v-model="module.component" tag-placeholder="Add this as new component" id="modules" placeholder="Search or add a component" label="name" :allow-empty="true" track-by="id" :options="this.components" :max-height="150" :taggable="true" ></multiselect>
   <pre class="language-json"><code></code></pre>   
         <label for="templates" class="typo__label">Templates</label>
-  <multiselect v-model="module.templates" tag-placeholder="Add this as new template" id="modules" placeholder="Search or add a template" label="name" :allow-empty="true" track-by="id" :options="this.templates" :max-height="150" :multiple="true" :taggable="true" ></multiselect>
+  <multiselect v-model="module.templates" tag-placeholder="Add this as new template" id="modules" placeholder="Search or add a template" label="name" :allow-empty="true" track-by="id" :options="this.templates" :max-height="500" :multiple="true" :taggable="true" ></multiselect>
   <pre class="language-json"><code></code></pre>    
     </div>
 
@@ -56,7 +56,7 @@
         </form> 
        </modal>
 
-       <modal name="show-module" :adaptive="true" height="auto" width="800" :scrollable="true">
+       <modal name="show-module" :adaptive="true" height="800" width="800" :scrollable="true">
        <table class="table module-table">
            <tbody>
                <tr>
@@ -80,7 +80,6 @@
                     <th scope="col">Templates</th>
                     <th></th>
                     <th></th>
-                    <th></th>
                     </tr>
                 </thead>
                 
@@ -90,7 +89,6 @@
                                 <td @click="editModule(module); showModule();" scope="col"><b v-if="module.component!==null">{{module.component.name}}</b></td>
                                 <td @click="editModule(module); showModule();" scope="col"><ul class="list-group"><li class="list-group-item item" v-for="template in module.templates" v-bind:key="template.id"><b>{{template.name}}</b></li></ul></td>
 
-                                <td  scope="col"><button @click="editModule(module); generateModule(module)" class="btn btn-success">Generate</button></td>
                                 <td  scope="col"><button @click="editModule(module); show();" class="btn btn-warning">Edit</button></td>
                                 <td  scope="col"><button @click="deleteModule(module.id)" class="btn btn-danger">Delete</button></td>
                                 </tr>

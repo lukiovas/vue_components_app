@@ -38,7 +38,7 @@
 
         <button type="button" v-on:click=" addNew()" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">
   Add new</button>
-  <modal name="create-component" :adaptive="true" height="auto" width="800" :scrollable="true" >
+  <modal name="create-component" :adaptive="true" height="800" width="800" :scrollable="true" >
       <form class="mb-3 forma" id="forma" @submit.prevent="createComponent" action="http://localhost:8081/components" method="post">
         <div class="line">
         <label for="name">Component Name</label>
@@ -46,7 +46,7 @@
         </div >
         <div class="line">
   <label class="typo__label">Properties</label>
-  <multiselect v-model="component.properties" tag-placeholder="Add this as new property" id="devices" placeholder="Search or add a property" label="name" :allow-empty="true" track-by="id" :options="this.properties" :max-height="150" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
+  <multiselect v-model="component.properties" tag-placeholder="Add this as new property" id="devices" placeholder="Search or add a property" label="name" :allow-empty="true" track-by="id" :options="this.properties" :max-height="500" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
   <pre class="language-json"><code></code></pre>
 </div>
         <div class="line">
