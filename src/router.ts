@@ -1,15 +1,14 @@
 import Vue from 'vue';
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-import components from "./components/components.vue"
-import properties from "./components/properties.vue"
-import modules from "./components/modules.vue"
-import templates from "./components/templates.vue"
-import projects from "./components/projects.vue"
+import components from './components/components.vue';
+import properties from './components/properties.vue';
+import modules from './components/modules.vue';
+import templates from './components/templates.vue';
+import projects from './components/projects.vue';
 
- 
 Vue.use(VueAxios, axios);
 
 Vue.use(Router);
@@ -45,14 +44,14 @@ export default new Router({
       path: '/projects',
       name: 'projects',
       component: projects,
-    }
+    },
     // {
-      // path: '/about',
-      // name: 'about',
-      // // route level code-splitting
-      // // this generates a separate chunk (about.[hash].js) for this route
-      // // which is lazy-loaded when the route is visited.
-      //                component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+    // path: '/about',
+    // name: 'about',
+    // // route level code-splitting
+    // // this generates a separate chunk (about.[hash].js) for this route
+    // // which is lazy-loaded when the route is visited.
+    //                component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
     // },
   ],
 });
