@@ -44,7 +44,7 @@
         <label for="name">Project Name</label>
         <input type="text" class='form-control' v-model="project.name" id="PrjctName">
         <label for="modules" class="typo__label">Modules</label>
-  <multiselect v-model="project.modules" tag-placeholder="Add this as new module" id="modules" placeholder="Search or add a module" label="name" :allow-empty="true" track-by="id" :options="this.modules" :max-height="500" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
+  <multiselect v-model="project.modules" tag-placeholder="Add this as new module" id="modules" placeholder="Search or add a module" label="name" :allow-empty="true" track-by="id" :options="this.modules" :max-height="500" :multiple="true" :taggable="true" ></multiselect>
   <pre class="language-json"><code></code></pre>    
     </div>
 
@@ -183,15 +183,6 @@ export default {
         this.fetchModules();
     },
     methods: {
-        addTag (newTag) {
-      const tag = {
-        name: newTag,
-        code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
-      }
-      this.options.push(tag)
-      this.value.push(tag)
-    },
-  
         
         fetchModules() {
                         axios.get('http://localhost:8080/api/Modules').then((response) => {
