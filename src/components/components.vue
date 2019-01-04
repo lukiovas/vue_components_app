@@ -6,24 +6,24 @@
           <ul class="nav nav-pills" id="nav-list">
             <li class="nav-item">
               <a
-                href="/#/components"
+                href="/components"
                 class="btn btn-light active"
               >Components</a>
             </li>
             <li class="nav-item">
               <a
-                href="/#/properties"
+                href="/properties"
                 class="btn btn-light"
               >Properties</a>
             </li>
             <li class="nav-item">
-              <a href="/#/modules" class="btn btn-light">Modules</a>
+              <a href="/modules" class="btn btn-light">Modules</a>
             </li>
             <li class="nav-item">
-              <a href="/#/Templates" class="btn btn-light">Templates</a>
+              <a href="/Templates" class="btn btn-light">Templates</a>
             </li>
             <li class="nav-item">
-              <a href="/#/projects" class="btn btn-light">Projects</a>
+              <a href="/projects" class="btn btn-light">Projects</a>
             </li>
           </ul>
         </div>

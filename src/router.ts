@@ -2,7 +2,6 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
 import components from './components/components.vue';
 import properties from './components/properties.vue';
 import modules from './components/modules.vue';
@@ -14,11 +13,12 @@ Vue.use(VueAxios, axios);
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'components',
+      component: components,
     },
     {
       path: '/components',
