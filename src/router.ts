@@ -2,6 +2,7 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import Router from 'vue-router';
+import Home from './views/Home.vue';
 import components from './components/components.vue';
 import properties from './components/properties.vue';
 import modules from './components/modules.vue';
@@ -17,8 +18,9 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'components',
-      component: components,
+      name: 'home',
+      component: Home,
+      redirect: '/components',
     },
     {
       path: '/components',
